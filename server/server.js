@@ -1,8 +1,10 @@
 let express = require('express');
 let cors = require('cors');
 const axios = require('axios')
-const app = express();
+const dotEnv = require('dotenv-webpack')
 
+const app = express();
+// const url = 
 app.use(cors());
 app.use(express.json());
 
