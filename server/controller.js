@@ -13,11 +13,7 @@ module.exports = {
         const { product_id } = search_parameters
         const { product_results } = response.data
         const { title, price, images } = product_results
-        for (let i = 0; i < items.length; i++) {
-          if (items[i].productID === product_id) {
-            console.log('You currently have this item on your list.')
-          }
-        }
+        
         let item = {
           productId: product_id,
           title,
@@ -29,7 +25,19 @@ module.exports = {
       })
       .catch(err => {console.log(err)})
   },
+
   saveList: (req, res) => {
-    console.log('hit')
+    res.status(200).send(items)
+  },
+
+  deleteItem: (req, res) => {
+    let index = items.findIndex((elem) => elem.id === +req.params.id);
+    items.splice(index, 1);
+    console.log(items);
+    res.status(200).send(items);
+  },
+
+  updateList: (req, res) => {
+    res.status(200).send(items)
   },
 }

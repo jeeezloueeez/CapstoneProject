@@ -6,27 +6,32 @@ const form = document.getElementById('search-form')
 const photo = document.querySelectorAll('.image-section')
 const text = document.querySelectorAll('.text-section')
 const pricing = document.querySelectorAll('.pricing-section')
-
+const savedItems = document.getElementById('saved-items')
 const deleteBtn = document.getElementById('delete-button')
+const saveBtn = document.getElementById('save-button')
+const updateBtn = document.getElementById('update-button')
+const savedLists = document.getElementById('list-section')
 
+const baseURL = `http://localhost:5011`
 
+let globalId = 1
 
 const searchItem = (evt) => {
   evt.preventDefault()
   let idNumber = productID.value
   axios
-    .get(`/product/${idNumber}`)
+    .get(`${baseURL}/product/${idNumber}`)
     .then(res => {
       const { productId, title, price, image } = res.data
-      console.log(productId)
 
       // const { product_results } = res.data
       // const { images, title, price } = product_results
       
       let newSection = document.createElement('div')
       newSection.classList.add('item')
-      newSection.setAttribute('id', `${productId}`)
+      newSection.setAttribute('id', `${globalId}`)
       itemResults.appendChild(newSection)
+      globalId++
 
       let newImage = document.createElement('div')
       newImage.classList.add('image-section')
@@ -40,16 +45,6 @@ const searchItem = (evt) => {
       let productName = document.createElement('h3')
       productName.textContent = title
       textSection.appendChild(productName)
-      let saveButton = document.createElement('button')
-      saveButton.classList.add('save-button')
-      saveButton.setAttribute('id', 'save-button')
-      saveButton.textContent = 'SAVE ITEM'
-      textSection.appendChild(saveButton)
-      let deleteButton = document.createElement('button')
-      deleteButton.classList.add('delete-button')
-      deleteButton.setAttribute('id', 'delete-button')
-      deleteButton.textContent = 'DELETE'
-      textSection.appendChild(deleteButton)
       newSection.appendChild(textSection)
 
       let newPrice = document.createElement('div')
@@ -61,41 +56,77 @@ const searchItem = (evt) => {
 
       tableTitle.style.visibility = 'visible'
       bottomBorder.style.visibility = 'visible'
+      saveBtn.style.visibility = 'visible'
+      deleteBtn.style.visibility = 'visible'
+      // updateBtn.style.visibility= 'visible'
     })
     .catch(err => {console.log(err)})
   productID.value = ''
 }
 
-const saveBtn = document.getElementById('save-button')
 
 const saveList = (evt) => {
   evt.preventDefault()
   axios
-  .post(`/saved`)
+  .post(`${baseURL}/saved`)
   .then(res => {
-    
+    savedLists.style.visibility = 'visible'
+    let items = res.data
+    console.log(items)
+    let list = document.createElement('div')
+    list.classList.add('job-materials')
+    savedItems.appendChild(list)
+    items.forEach(element => {
+      let text = element.productId
+
+      let newText = document.createElement('h4')
+      newText.textContent = text
+      list.appendChild(newText)
+
+    })
   })
   .catch(err => {console.log(err)})
 }
 
-// const deleteItem = (evt) => {
-  //   evt.preventDefault()
-  //   let div = document.getElementById(`${globalId - 1}`)
-  //   if (globalId > 2) {
-    //     div.remove()
-    //     globalId--
-    //   } else {
-      //     globalId--
-      //     div.remove()
-      //     saveButton.style.visibility = ''
-      //     tableTitle.style.visibility = ''
-      //     bottomBorder.style.visibility = ''
-      //     deleteBtn.style.visibility = ''
-      //   }
-      // }
+const deleteItem = (evt) => {
+  evt.preventDefault()
+
+  // axios
+  //   .delete(`${baseURL}/delete`)
+  //   .then(res => {
+  //     console.log(res.data)
+  //   })
+  //   .catch(err => {console.log(err)})
+
+  let div = document.getElementById(`${globalId - 1}`)
+  if (globalId > 2) {
+    div.remove()
+    globalId--
+  } else {
+    globalId--
+    div.remove()
+    saveBtn.style.visibility = 'hidden'
+    tableTitle.style.visibility = 'hidden'
+    bottomBorder.style.visibility = 'hidden'
+    deleteBtn.style.visibility = 'hidden'
+    // updateBtn.style.visibility = 'hidden'
+  }
+}
+
+const updateList = (evt) => {
+  evt.preventDefault()
+
+  axios
+    .put(`${baseURL}/update`)
+    .then(res => {
+      let items = res.data
+      console.log(items)
+    })
+    .catch(err => {console.log(err)})
+}
       
       
 form.addEventListener('submit', searchItem)
-      // deleteBtn.addEventListener('click', deleteItem)
-      
+deleteBtn.addEventListener('click', deleteItem)      
 saveBtn.addEventListener('click', saveList)
+// updateBtn.addEventListener('click', updateList)

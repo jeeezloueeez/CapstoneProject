@@ -88,7 +88,7 @@ body {
 }
 
 .item h3 {
-  color: #3C6E71;
+  color: #284B63;
   text-align: center;
 }
 
@@ -116,7 +116,15 @@ body {
   justify-content: center;
 }
 
+.save-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .save-button {
+  visibility: hidden;
   margin-top: 2rem;
   height: 2.5rem;
   width: 8rem;
@@ -128,7 +136,8 @@ body {
 }
 
 .delete-button {
-  margin-top: .5rem;
+  visibility: hidden;
+  margin-top: 2rem;
   height: 2.5rem;
   width: 8rem;
 }
@@ -136,4 +145,58 @@ body {
 .delete-button:hover {
   background-color: #3C6E71;
   color: #FFFFFF;
+}
+
+.update-button {
+  visibility: hidden;
+  margin-top: 2rem;
+  height: 2.5rem;
+  width: 8rem;
+}
+
+.update-button:hover {
+  background-color: #3C6E71;
+  color: #FFFFFF;
+}
+
+.list-section {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  word-wrap: normal;
+  margin-top: 60px;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  background-color: #284B63;
+  color: #FFFFFF;
+  font-size: 40px;
+}
+
+.saved-items {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+
+.job-materials {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFFFF;
+  color: #284B63;
+  margin: -40px 10px 0px 10px;
+}
+
+.job-materials h4 {
+  font-size: 30px;
 }
