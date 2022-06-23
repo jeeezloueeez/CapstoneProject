@@ -24,12 +24,7 @@ app.get('/product/:id', controllerFile.searchItem)
 
 app.post('/saved', controllerFile.saveList)
 
-app.put('/update', controllerFile.updateList)
-
-// app.delete('/delete', controllerFile.deleteItem)
-
-
-
+app.delete('/delete', controllerFile.deleteItem)
 
 
 const port = process.env.PORT || 5011

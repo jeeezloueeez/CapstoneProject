@@ -33,11 +33,6 @@ module.exports = {
   deleteItem: (req, res) => {
     let index = items.findIndex((elem) => elem.id === +req.params.id);
     items.splice(index, 1);
-    console.log(items);
     res.status(200).send(items);
-  },
-
-  updateList: (req, res) => {
-    res.status(200).send(items)
   },
 }

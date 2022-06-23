@@ -9,7 +9,6 @@ const pricing = document.querySelectorAll('.pricing-section')
 const savedItems = document.getElementById('saved-items')
 const deleteBtn = document.getElementById('delete-button')
 const saveBtn = document.getElementById('save-button')
-const updateBtn = document.getElementById('update-button')
 const savedLists = document.getElementById('list-section')
 
 const baseURL = `http://localhost:5011`
@@ -23,9 +22,6 @@ const searchItem = (evt) => {
     .get(`${baseURL}/product/${idNumber}`)
     .then(res => {
       const { productId, title, price, image } = res.data
-
-      // const { product_results } = res.data
-      // const { images, title, price } = product_results
       
       let newSection = document.createElement('div')
       newSection.classList.add('item')
@@ -58,7 +54,6 @@ const searchItem = (evt) => {
       bottomBorder.style.visibility = 'visible'
       saveBtn.style.visibility = 'visible'
       deleteBtn.style.visibility = 'visible'
-      // updateBtn.style.visibility= 'visible'
     })
     .catch(err => {console.log(err)})
   productID.value = ''
@@ -90,14 +85,6 @@ const saveList = (evt) => {
 
 const deleteItem = (evt) => {
   evt.preventDefault()
-
-  // axios
-  //   .delete(`${baseURL}/delete`)
-  //   .then(res => {
-  //     console.log(res.data)
-  //   })
-  //   .catch(err => {console.log(err)})
-
   let div = document.getElementById(`${globalId - 1}`)
   if (globalId > 2) {
     div.remove()
@@ -109,24 +96,16 @@ const deleteItem = (evt) => {
     tableTitle.style.visibility = 'hidden'
     bottomBorder.style.visibility = 'hidden'
     deleteBtn.style.visibility = 'hidden'
-    // updateBtn.style.visibility = 'hidden'
   }
-}
-
-const updateList = (evt) => {
-  evt.preventDefault()
 
   axios
-    .put(`${baseURL}/update`)
+    .delete(`${baseURL}/delete`)
     .then(res => {
-      let items = res.data
-      console.log(items)
+
     })
     .catch(err => {console.log(err)})
 }
-      
-      
+
 form.addEventListener('submit', searchItem)
 deleteBtn.addEventListener('click', deleteItem)      
 saveBtn.addEventListener('click', saveList)
-// updateBtn.addEventListener('click', updateList)
