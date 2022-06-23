@@ -19,11 +19,13 @@ const controllerFile = require('./controller')
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'))
 })
-app.get('/product/:id', controllerFile.getID) 
+app.get('/product/:id', controllerFile.searchItem) 
+
+
+app.post('/saved/:id', controllerFile.saveList)
 
 
 
 
-
-
-app.listen(5011, console.log('server is running on 5011'));
+const port = process.env.PORT || 5011
+app.listen(port, () => console.log(`listening on ${port}`));

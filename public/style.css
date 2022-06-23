@@ -60,10 +60,12 @@ body {
   width: 100vw;
   margin-top: 2rem;
   display: flex;
+  justify-content: space-evenly;
   flex-direction: column;
   align-items: center;
   font-size: 1.5rem;
   border-bottom: 5px solid #284B63;
+  visibility: hidden;
 }
 
 .categories {
@@ -72,9 +74,8 @@ body {
   color: #FFFFFF;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding-left: 1.5%;
-  padding-right: 3%;
+  justify-content: space-around;
+  visibility: hidden;
 }
 
 .item {
@@ -86,44 +87,53 @@ body {
   align-items: center;
 }
 
-.item img {
-  height: 8rem;
-  width: 8rem;
+.item h3 {
+  color: #3C6E71;
+  text-align: center;
 }
 
-.item h3 {
+.image-section {
+  width: 33.3vw;
+  display: flex;
+  justify-content: center;
+}
+
+.text-section {
+
+  width: 33.3vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
   border-left: 5px solid #284B63;
   border-right: 5px solid #284B63;
-  color: #3C6E71;
-  height: 8rem;
-  width: 75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.item h4 {
-  color: #3C6E71;
-  height: 8rem;
-  width: 10rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.save {
+.pricing-section {
+  width: 33.3vw;
   display: flex;
   justify-content: center;
 }
 
 .save-button {
-  visibility: hidden;
   margin-top: 2rem;
   height: 2.5rem;
   width: 8rem;
 }
 
 .save-button:hover {
+  background-color: #3C6E71;
+  color: #FFFFFF;
+}
+
+.delete-button {
+  margin-top: .5rem;
+  height: 2.5rem;
+  width: 8rem;
+}
+
+.delete-button:hover {
   background-color: #3C6E71;
   color: #FFFFFF;
 }
