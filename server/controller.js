@@ -25,11 +25,11 @@ module.exports = {
           image: images[0][0],
         }
         items.push(item)
-        res.status(200).send(items)
+        res.status(200).send(item)
       })
       .catch(err => {console.log(err)})
   },
   saveList: (req, res) => {
-    console.log(req.params. req.query, req.body)
+    console.log('hit')
   },
 }

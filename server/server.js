@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 app.get('/product/:id', controllerFile.searchItem) 
 
 
-app.post('/saved/:id', controllerFile.saveList)
+app.post('/saved', controllerFile.saveList)
 
 
 
