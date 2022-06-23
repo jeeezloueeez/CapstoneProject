@@ -11,14 +11,11 @@ const deleteBtn = document.getElementById('delete-button')
 
 
 
-
-globalId = 0
-
 const searchItem = (evt) => {
   evt.preventDefault()
   let idNumber = productID.value
   axios
-    .get(`/api/product/${idNumber}`)
+    .get(`/product/${idNumber}`)
     .then(res => {
       const { productId, title, price, image } = res.data
       console.log(productId)
@@ -74,7 +71,7 @@ const saveBtn = document.getElementById('save-button')
 const saveList = (evt) => {
   evt.preventDefault()
   axios
-  .post(`/api/saved`)
+  .post(`/saved`)
   .then(res => {
     
   })
