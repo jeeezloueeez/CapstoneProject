@@ -10,7 +10,7 @@ const pricing = document.querySelectorAll('.pricing-section')
 const deleteBtn = document.getElementById('delete-button')
 
 
-const url = '/api'
+
 
 globalId = 0
 
@@ -18,7 +18,7 @@ const searchItem = (evt) => {
   evt.preventDefault()
   let idNumber = productID.value
   axios
-    .get(`${url}/product/${idNumber}`)
+    .get(`/api/product/${idNumber}`)
     .then(res => {
       const { productId, title, price, image } = res.data
       console.log(productId)
@@ -74,7 +74,7 @@ const saveBtn = document.getElementById('save-button')
 const saveList = (evt) => {
   evt.preventDefault()
   axios
-  .post(`${url}/saved`)
+  .post(`/api/saved`)
   .then(res => {
     
   })
